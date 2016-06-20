@@ -6,13 +6,12 @@ var swig = require('swig');
 var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
 var models = require('./models/index.js');
+var router = require('./routes/wiki.js')
 //UPDATE THIS W/ directory
-
 app.use(morgan('dev'));
-
 app.use(express.static('public'));
-
-app.use(bodyParser.json()); // May want to use the urlencoded implementation of bodyparse
+app.use(bodyParser.urlencoded({extended: true})); // May want to use the urlencoded implementation of bodyparse
+app.use('/wiki',router);
 
 app.set('views', __dirname + '/views');
 // have res.render work with html files
@@ -23,11 +22,11 @@ app.engine('html', swig.renderFile);
 // turn of swig's caching
 swig.setDefaults({cache: false});
 
-app.get('/', function(req, res, next){
+/*app.get('/', function(req, res, next){
 	res.render('index.html');
 	//res.end();
 })
-
+*/
 //console.log(models);
 models.User.sync({})
 .then(function(){
