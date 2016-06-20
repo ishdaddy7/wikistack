@@ -7,11 +7,8 @@ var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
 var models = require('./models/index.js');
 //UPDATE THIS W/ directory
-console.log(models.User);
-console.log(models.Page);
-console.log("The models var: ", models);
 
-app.use(morgan());
+app.use(morgan('dev'));
 
 app.use(express.static('public'));
 
@@ -27,18 +24,18 @@ app.engine('html', swig.renderFile);
 swig.setDefaults({cache: false});
 
 app.get('/', function(req, res, next){
-	res.render('views/index.html');
-	res.end(); 
+	res.render('index.html');
+	//res.end();
 })
 
-console.log(models);
+//console.log(models);
 models.User.sync({})
 .then(function(){
 	return models.Page.sync({})
 })
 .then(function(){
-	app.listen(3000, function(){
-		console.log('Server is listening on port 3000!');
+	app.listen(3001, function(){
+		console.log('Server is listening on port 3001!');
 	});
 })
 .catch(console.error);

@@ -5,15 +5,16 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -e html,js,css ./Users/johnhenry/Desktop/Wikistack/app.js"
-},
+    "start": "nodemon -e html,js,css ./app.js"
   },
   "author": "Sean and John",
   "license": "ISC",
   "dependencies": {
+    "morgan": "^1.7.0",
     "pg": "^5.1.0",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^3.23.3"
+    "sequelize": "^3.23.3",
+    "swig": "^1.4.2"
   },
   "devDependencies": {
     "nodemon": "^1.9.2"
