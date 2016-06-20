@@ -1,0 +1,21 @@
+{
+  "name": "wikistack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon -e html,js,css ./Users/johnhenry/Desktop/Wikistack/app.js"
+},
+  },
+  "author": "Sean and John",
+  "license": "ISC",
+  "dependencies": {
+    "pg": "^5.1.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.23.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.2"
+  }
+}
