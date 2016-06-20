@@ -15,12 +15,11 @@ router.post('/', function(req, res, next){
   console.log(req.body);
   var page = Page.build({
     title: req.body.title,
-    urlTitle: req.body.title,
     content: req.body.content,
     status: req.body.status
   });
-  page.save();
-  res.redirect('/');
+  page.save().then(function(result){
+    console.log(result.urlTitle)});
   //res.render('');
 });
 
@@ -29,6 +28,18 @@ router.get('/add', function(req, res, next){
   res.render('addpage');
 });
 
+router.get('/:urlTitle', function(req, res, next){
+  Page.findOne({
+    where: {
+      urlTitle: req.params.urlTitle
+    }
+  })
+  .then(function(foundpage){
+    console.log(foundpage);
+    res.render('wikipage', {data: foundpage});
+  })
+  .catch(next)
+});
 
 module.exports = router;
 

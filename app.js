@@ -10,7 +10,8 @@ var router = require('./routes/wiki.js')
 //UPDATE THIS W/ directory
 app.use(morgan('dev'));
 app.use(express.static('public'));
-app.use(bodyParser.urlencoded({extended: true})); // May want to use the urlencoded implementation of bodyparse
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json()); // May want to use the urlencoded implementation of bodyparse
 app.use('/wiki',router);
 
 app.set('views', __dirname + '/views');
