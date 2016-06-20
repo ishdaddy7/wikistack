@@ -6,20 +6,26 @@ var User = models.User;
 var Page = models.Page;
 
 router.get('/', function(req, res, next){
-  //res.send('got to GET /wiki/');
-  res.redirect('/');
+  //res.send('got to GET /wiki/')
+  Page.findAll({})
+    .then(function(allpages){
+      console.log(allpages);
+      res.render('index', {pages: allpages});
+    })
+    .catch(next);
+  //res.redirect('/');
 });
 
 router.post('/', function(req, res, next){
   //res.send('got to POST /wiki');
-  console.log(req.body);
   var page = Page.build({
     title: req.body.title,
     content: req.body.content,
     status: req.body.status
   });
   page.save().then(function(result){
-    console.log(result.urlTitle)});
+    res.redirect(result.urlTitle);
+  });
   //res.render('');
 });
 
@@ -35,10 +41,9 @@ router.get('/:urlTitle', function(req, res, next){
     }
   })
   .then(function(foundpage){
-    console.log(foundpage);
     res.render('wikipage', {data: foundpage});
   })
-  .catch(next)
+  .catch(next);
 });
 
 module.exports = router;

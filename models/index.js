@@ -50,7 +50,7 @@ var Page = db.define('page', {
   }
   else {
     page.urlTitle = Math.random().toString(36).substring(2,7);
-  }  
+  }
   }
 }}
 )
